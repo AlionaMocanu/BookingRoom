@@ -11,107 +11,107 @@ using Booking.Models;
 
 namespace Booking.Controllers
 {
-    public class RoomsController : Controller
+    public class ClientsController : Controller
     {
         private BookingContext db = new BookingContext();
 
-        // GET: Rooms
+        // GET: Clients
         public ActionResult Index()
         {
-            return View(db.Rooms.ToList());
+            return View(db.Clients.ToList());
         }
 
-        // GET: Rooms/Details/5
+        // GET: Clients/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Room room = db.Rooms.Find(id);
-            if (room == null)
+            Client client = db.Clients.Find(id);
+            if (client == null)
             {
                 return HttpNotFound();
             }
-            return View(room);
+            return View(client);
         }
 
-        // GET: Rooms/Create
+        // GET: Clients/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Rooms/Create
+        // POST: Clients/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,RoomNumber,CapacityOfPeople")] Room room)
+        public ActionResult Create([Bind(Include = "Id,ClientName,Phone,Email,Insurance")] Client client)
         {
             if (ModelState.IsValid)
             {
-                db.Rooms.Add(room);
+                db.Clients.Add(client);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(room);
+            return View(client);
         }
 
-        // GET: Rooms/Edit/5
+        // GET: Clients/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Room room = db.Rooms.Find(id);
-            if (room == null)
+            Client client = db.Clients.Find(id);
+            if (client == null)
             {
                 return HttpNotFound();
             }
-            return View(room);
+            return View(client);
         }
 
-        // POST: Rooms/Edit/5
+        // POST: Clients/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,RoomNumber,CapacityOfPeople")] Room room)
+        public ActionResult Edit([Bind(Include = "Id,ClientName,Phone,Email,Insurance")] Client client)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(room).State = EntityState.Modified;
+                db.Entry(client).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(room);
+            return View(client);
         }
 
-        // GET: Rooms/Delete/5
+        // GET: Clients/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Room room = db.Rooms.Find(id);
-            if (room == null)
+            Client client = db.Clients.Find(id);
+            if (client == null)
             {
                 return HttpNotFound();
             }
-            return View(room);
+            return View(client);
         }
 
-        // POST: Rooms/Delete/5
+        // POST: Clients/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Room room = db.Rooms.Find(id);
-            db.Rooms.Remove(room);
+            Client client = db.Clients.Find(id);
+            db.Clients.Remove(client);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -6,14 +6,13 @@ using System.Web;
 
 namespace Booking.Models
 { 
-    public enum NoiseLevel { NeedQuitness, MediumNoise, Noisy }
+   
 
     public class Room
     {
         [Key]
-        [Range(1,4)]
-        [Display(Name = "Room ID")]
-        public int RoomID { get; set; }
+        [Required]
+        public int Id { get; set; }
 
         [Required]
         [Range(1, 4)]
@@ -24,9 +23,6 @@ namespace Booking.Models
         [Range(1,75)]
         [Display(Name = "Capacity of People")]
         public int CapacityOfPeople { get; set; }
-
-        [Required]
-        public List<NoiseLevel> NoiseLevel { get; set; }
      
         public Room()
         {
